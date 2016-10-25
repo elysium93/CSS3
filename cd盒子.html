@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .box{
+            width: 600px;
+            height:500px;
+            margin: 100px auto;
+            background: url("cd-box/bg.jpg");
+            position: relative;
+        }
+        .photo{
+            width: 200px;
+            height:200px;
+            position: absolute;
+            left:200px;
+            top: 200px;
+            background: url("cd-box/img_01.jpg");
+            z-index: 2;
+            -webkit-transition: 1s all ease;
+        }
+        .cd{
+            width: 194px;
+            height:194px;
+            background: url("cd-box/cd.png");
+            position: absolute;
+            left:203px;
+            top:203px;
+            z-index: 1;
+            -webkit-transition: 1s all ease;
+        }
+        .photo:hover{
+            -webkit-transform: translate(0,40px);
+        }
+       /* .photo:hover .cd{
+            -webkit-transform: translate(0,-40px) rotate(-90deg);
+        }*/
+    </style>
+    <script>
+        window.onload = function(){
+            var oP = document.querySelector('.photo');
+            var oC = document.querySelector('.cd');
+            oP.onmouseover = function(){
+                oC.style.WebkitTransform = 'translate(0,-40px) rotate(-180deg)';
+            }
+            oP.onmouseout = function(){
+                oC.style.WebkitTransform = 'translate(0,0) rotate(180deg)';
+            }
+        }
+    </script>
+</head>
+<body>
+<div class="box">
+    <div class="photo"></div>
+    <div class="cd"></div>
+</div>
+</body>
+</html>

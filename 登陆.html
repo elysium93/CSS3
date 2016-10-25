@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        body{
+            overflow:hidden;
+        }
+        .box{
+            width:260px;
+            height:260px;
+            margin:100px auto;
+            background:rgba(0,153,204,1);
+            border:1px solid #000;
+            border-radius:20px;
+            padding:20px;
+            line-height:25px;
+            -webkit-transform: scale(4,4);
+            opacity:0;
+            display:none;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var oBtn = document.querySelector('.btn');
+            var oBox = document.querySelector('.box');
+            var oClose = document.querySelector('.close');
+            oBtn.onclick = function(){
+                oBox.style.display = 'block';
+
+                oBox.style.WebkitTransition = '.5s all ease';
+
+                setTimeout(function(){
+                    oBox.style.opacity = 1;
+                    oBox.style.WebkitTransform = 'scale(1,1)';
+                },5);
+            };
+            oClose.onclick = function(){
+                oBox.style.opacity = 0;
+                oBox.style.WebkitTransform = 'scale(4,4)';
+
+                function tranEnd(){
+                    oBox.removeEventListener('transitionend',tranEnd,false);
+                    oBox.style.display='none';
+                }
+                oBox.addEventListener('transitionend',tranEnd,false);
+            };
+        };
+    </script>
+</head>
+<body>
+<a href="javascript:;" class="btn">登陆</a>
+<div class="box">上的接口的房间上课的就是的看似简单四度空间盛开的
+    <a href="javascript:;" class="close">X</a>
+</div>
+</body>
+</html>

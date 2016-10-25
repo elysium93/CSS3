@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #clock{
+            width: 300px;
+            height:300px;
+            border-radius: 50%;
+            border: 5px solid #000;
+            position: absolute;
+            left:50%;
+            top: 50%;
+            margin-left: -150px;
+            margin-top: -150px;
+        }
+        .hou{
+            width: 10px;
+            height:80px;
+            background: #000;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            left:50%;
+            margin-left: -5px;
+            top: 70px;
+            -webkit-transform-origin: bottom;
+        }
+        .min{
+            width: 6px;
+            height:100px;
+            background: blue;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            left:50%;
+            margin-left: -3px;
+            top: 50px;
+            -webkit-transform-origin: bottom;
+        }
+        .sec{
+            width: 4px;
+            height:120px;
+            background: red;
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            left:50%;
+            margin-left: -2px;
+            top: 30px;
+            -webkit-transform-origin: bottom;
+        }
+        .cap{
+            width: 20px;
+            height:20px;
+            background: -webkit-radial-gradient(#fff, #767676);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -10px;
+            margin-top: -10px;
+        }
+        #clock span{
+            width: 4px;
+            height:10px;
+            background: #000;
+            position: absolute;
+            left:50%;
+            top: 0;
+            margin-left: -2px;
+            -webkit-transform-origin: center 150px;
+        }
+        #clock span.big{
+            width: 6px;
+            margin-left: -3px;
+            height:18px;
+        }
+        #clock span i{
+            width: 30px;
+            height:20px;
+            position: absolute;
+            left: 50%;
+            top: 20px;
+            margin-left: -15px;
+            text-align: center;
+            font-style: normal;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var oClock = document.querySelector('#clock');
+            var oH = document.querySelector('.hou');
+            var oM = document.querySelector('.min');
+            var oSec = document.querySelector('.sec');
+
+            var N = 60;
+            for(var i=0;i<N;i++){
+                var oS = document.createElement('span');
+                oS.style.WebkitTransform = 'rotate('+i*6+'deg)';
+                if(i%5==0){
+                    oS.className = 'big';
+                    oS.innerHTML = '<i>'+(i/5||12)+'</i>';
+                    var oI = oS.children[0];
+                    oI.style.webkitTransform = 'rotate('+-i*6+'deg)';
+                }
+                oClock.appendChild(oS);
+            }
+
+            function clock(){
+                var oDate = new Date();
+                var h = oDate.getHours();
+                var m = oDate.getMinutes();
+                var s = oDate.getSeconds();
+
+                oH.style.WebkitTransform = 'rotate('+(h*30+m/60*30)+'deg)';
+                oM.style.WebkitTransform = 'rotate('+(m*6+s/60*6)+'deg)';
+                oSec.style.WebkitTransform = 'rotate('+s*6+'deg)';
+            }
+            clock();
+            setInterval(clock,1000);
+        }
+    </script>
+</head>
+<body>
+<div id="clock">
+    <div class="hou"></div>
+    <div class="min"></div>
+    <div class="sec"></div>
+    <div class="cap"></div>
+</div>
+</body>
+</html>
